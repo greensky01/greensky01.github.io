@@ -3,17 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Greensky01&#39;s Blog</title>
+  <title>运行Hadoop-1.0.4 wordcount | Greensky01&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="this is a desc">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Greensky01's Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="背景安装好hadoop之后还没有真正运行过程序。今天买了一本《Hadoop In Action》的电子版，看到Hadoop自带了一些例子，尤其是著名的wordcount，于是就决定来试一下。也许是作者认为例子过于简单，其中的步骤并不全，对于我这样的newbie还是挺有难度的。好在最后求助于搜索引擎，把问题解决了。在这里把过程记录一下。
+步骤
+在hadoop根目录下创建input目录用于保存本地文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运行Hadoop-1.0.4 wordcount">
+<meta property="og:url" content="http://yoursite.com/2016/07/20/Hadoop-1-0-4-wordcount-examples/index.html">
 <meta property="og:site_name" content="Greensky01's Blog">
-<meta property="og:description" content="this is a desc">
+<meta property="og:description" content="背景安装好hadoop之后还没有真正运行过程序。今天买了一本《Hadoop In Action》的电子版，看到Hadoop自带了一些例子，尤其是著名的wordcount，于是就决定来试一下。也许是作者认为例子过于简单，其中的步骤并不全，对于我这样的newbie还是挺有难度的。好在最后求助于搜索引擎，把问题解决了。在这里把过程记录一下。
+步骤
+在hadoop根目录下创建input目录用于保存本地文件">
+<meta property="og:updated_time" content="2016-07-20T15:16:22.423Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Greensky01's Blog">
-<meta name="twitter:description" content="this is a desc">
+<meta name="twitter:title" content="运行Hadoop-1.0.4 wordcount">
+<meta name="twitter:description" content="背景安装好hadoop之后还没有真正运行过程序。今天买了一本《Hadoop In Action》的电子版，看到Hadoop自带了一些例子，尤其是著名的wordcount，于是就决定来试一下。也许是作者认为例子过于简单，其中的步骤并不全，对于我这样的newbie还是挺有难度的。好在最后求助于搜索引擎，把问题解决了。在这里把过程记录一下。
+步骤
+在hadoop根目录下创建input目录用于保存本地文件">
   
     <link rel="alternative" href="/atom.xml" title="Greensky01&#39;s Blog" type="application/atom+xml">
   
@@ -65,9 +72,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Hadoop-1-0-4-wordcount-examples" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Hadoop-1-0-4-wordcount-examples" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/07/20/Hadoop-1-0-4-wordcount-examples/" class="article-date">
   <time datetime="2016-07-20T15:12:07.000Z" itemprop="datePublished">2016-07-20</time>
@@ -84,8 +89,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/20/Hadoop-1-0-4-wordcount-examples/">运行Hadoop-1.0.4 wordcount</a>
+    <h1 class="article-title" itemprop="name">
+      运行Hadoop-1.0.4 wordcount
     </h1>
   
 
@@ -137,112 +142,39 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Hexo-Blog-Config" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/01/31/Hexo-Blog-Config/" class="article-date">
-  <time datetime="2016-01-31T06:07:12.000Z" itemprop="datePublished">2016-01-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/31/Hexo-Blog-Config/">Hexo配置过程及文章发表</a>
-    </h1>
+    <a href="/2016/01/31/Hexo-Blog-Config/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hexo配置过程及文章发表</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="u914D_u7F6E_u64CD_u4F5C_u8FC7_u7A0B"><a href="#u914D_u7F6E_u64CD_u4F5C_u8FC7_u7A0B" class="headerlink" title="配置操作过程"></a>配置操作过程</h2><ul>
-<li>打开shell或者cmd，导航至Hexo目录（包含_config.yml的目录）</li>
-<li>修改_config.yml的内容，这里配置的是整站的属性。配置结束后，要在shell中执行hexo generate</li>
-<li>上面没有错误，就可以在shell中执行hexo server，待启动服务器后，可以在浏览器中打开localhost：4000预览效果</li>
-<li>虽然可以预览效果，但是这是直接访问该页面，暂时还不能看到这些变化</li>
-<li>配置主题，在hexo\themes\landscape_config.yml中进行，这里配置后不需要执行hexo generate就可以预览效果</li>
-</ul>
-<h2 id="u64B0_u5199_u548C_u53D1_u8868_u6587_u7AE0"><a href="#u64B0_u5199_u548C_u53D1_u8868_u6587_u7AE0" class="headerlink" title="撰写和发表文章"></a>撰写和发表文章</h2><ul>
-<li>hexo new “文件名”，会产生一个新的markdown文件，在里面写文章。<br>在文件最上方可以配置一些基本信息:<blockquote>
-<p>title: my first post<br>date: 2016-01-31 13:42:35<br>categories: 学习<br>tags: [UFO, CSS]<br>注意tags的分隔符是半角的逗号。<br>配置信息下方就可以写文章了，这里推荐用markdown的语法，易读易写。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="u90E8_u7F72_u6587_u7AE0"><a href="#u90E8_u7F72_u6587_u7AE0" class="headerlink" title="部署文章"></a>部署文章</h2><p>每次修改过文章之后，都要先执行hexo generate，然后再执行hexo deploy。<br>前者类似于git commit的功能，如果不执行该命令，那么所做的修改不会显示在页面中。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/31/Hexo-Blog-Config/" data-id="ciqv1h3re0006tguvpwo7hjsc" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
 
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/01/30/hello-world/" class="article-date">
-  <time datetime="2016-01-30T08:04:43.964Z" itemprop="datePublished">2016-01-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/30/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/30/hello-world/" data-id="ciqv1h3ra0005tguvayqzp9wt" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-Hadoop-1-0-4-wordcount-examples" data-title="运行Hadoop-1.0.4 wordcount" data-url="http://yoursite.com/2016/07/20/Hadoop-1-0-4-wordcount-examples/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:'greensky01'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+       || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+</section>
 </section>
         
           <aside id="sidebar">
