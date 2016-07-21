@@ -5,22 +5,16 @@
   
   <title>运行Hadoop-1.0.4 wordcount | Greensky01&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="背景安装好hadoop之后还没有真正运行过程序。今天买了一本《Hadoop In Action》的电子版，看到Hadoop自带了一些例子，尤其是著名的wordcount，于是就决定来试一下。也许是作者认为例子过于简单，其中的步骤并不全，对于我这样的newbie还是挺有难度的。好在最后求助于搜索引擎，把问题解决了。在这里把过程记录一下。
-步骤
-在hadoop根目录下创建input目录用于保存本地文件">
+  <meta name="description" content="背景安装好hadoop之后还没有真正运行过程序。今天买了一本《Hadoop In Action》的电子版，看到Hadoop自带了一些例子，尤其是著名的wordcount，于是就决定来试一下。但是第一次按照第一章的代码运行并没有成功，看到后面才发现这是因为第一章的例子是在standalone模式下运行的，而我已经配置了pseudo-distributed模式。好在最后求助于搜索引擎，把问题解决了。在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="运行Hadoop-1.0.4 wordcount">
 <meta property="og:url" content="http://yoursite.com/2016/07/20/Hadoop-1-0-4-wordcount-examples/index.html">
 <meta property="og:site_name" content="Greensky01's Blog">
-<meta property="og:description" content="背景安装好hadoop之后还没有真正运行过程序。今天买了一本《Hadoop In Action》的电子版，看到Hadoop自带了一些例子，尤其是著名的wordcount，于是就决定来试一下。也许是作者认为例子过于简单，其中的步骤并不全，对于我这样的newbie还是挺有难度的。好在最后求助于搜索引擎，把问题解决了。在这里把过程记录一下。
-步骤
-在hadoop根目录下创建input目录用于保存本地文件">
-<meta property="og:updated_time" content="2016-07-20T15:16:22.423Z">
+<meta property="og:description" content="背景安装好hadoop之后还没有真正运行过程序。今天买了一本《Hadoop In Action》的电子版，看到Hadoop自带了一些例子，尤其是著名的wordcount，于是就决定来试一下。但是第一次按照第一章的代码运行并没有成功，看到后面才发现这是因为第一章的例子是在standalone模式下运行的，而我已经配置了pseudo-distributed模式。好在最后求助于搜索引擎，把问题解决了。在">
+<meta property="og:updated_time" content="2016-07-21T03:51:55.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运行Hadoop-1.0.4 wordcount">
-<meta name="twitter:description" content="背景安装好hadoop之后还没有真正运行过程序。今天买了一本《Hadoop In Action》的电子版，看到Hadoop自带了一些例子，尤其是著名的wordcount，于是就决定来试一下。也许是作者认为例子过于简单，其中的步骤并不全，对于我这样的newbie还是挺有难度的。好在最后求助于搜索引擎，把问题解决了。在这里把过程记录一下。
-步骤
-在hadoop根目录下创建input目录用于保存本地文件">
+<meta name="twitter:description" content="背景安装好hadoop之后还没有真正运行过程序。今天买了一本《Hadoop In Action》的电子版，看到Hadoop自带了一些例子，尤其是著名的wordcount，于是就决定来试一下。但是第一次按照第一章的代码运行并没有成功，看到后面才发现这是因为第一章的例子是在standalone模式下运行的，而我已经配置了pseudo-distributed模式。好在最后求助于搜索引擎，把问题解决了。在">
   
     <link rel="alternative" href="/atom.xml" title="Greensky01&#39;s Blog" type="application/atom+xml">
   
@@ -98,7 +92,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h2><p>安装好hadoop之后还没有真正运行过程序。今天买了一本《Hadoop In Action》的电子版，<br>看到Hadoop自带了一些例子，尤其是著名的wordcount，于是就决定来试一下。也许是作者<br>认为例子过于简单，其中的步骤并不全，对于我这样的newbie还是挺有难度的。好在最后<br>求助于搜索引擎，把问题解决了。在这里把过程记录一下。</p>
+        <h2 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h2><p>安装好hadoop之后还没有真正运行过程序。今天买了一本《Hadoop In Action》的电子版，<br>看到Hadoop自带了一些例子，尤其是著名的wordcount，于是就决定来试一下。但是<br>第一次按照第一章的代码运行并没有成功，看到后面才发现这是因为第一章的例子是<br>在standalone模式下运行的，而我已经配置了pseudo-distributed模式。好在最后<br>求助于搜索引擎，把问题解决了。在这里把自己的操作过程记录一下。注意，我使用的配置<br>是ubuntu 16.04，Hadoop 1.0.4。</p>
 <h2 id="u6B65_u9AA4"><a href="#u6B65_u9AA4" class="headerlink" title="步骤"></a>步骤</h2><ol>
 <li><p>在hadoop根目录下创建input目录用于保存本地文件;创建output目录用于稍后接收输出文件。</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mkdir</span> <span class="keyword">input</span></span><br></pre></td></tr></table></figure>
@@ -134,7 +128,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/20/Hadoop-1-0-4-wordcount-examples/" data-id="ciqv26ita0000oouvlqp5xu7m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/20/Hadoop-1-0-4-wordcount-examples/" data-id="ciqvs9ihc0000l4uvlejlswst" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
