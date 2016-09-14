@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | Greensky01&#39;s Blog</title>
+  <title>C++中的字符串 | Greensky01&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+  <meta name="description" content="字符串有哪些？使用C++时，常见的字符串类型有char[]（字符数组）和标准库中的std::string；如果在VC下开发MFC程序，也会遇到CString这种类型。不同的字符串间的转换是非常麻烦的一件事，即便已经有数不清的前辈为大家总结好了转换的各种方法，但是保持数据类型的一致性，还是能在很大程度上提高开发效率。如果不行，那你一定没有经历过花一下午时间debug，但最后发现问题出在了这种转换上。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/01/30/hello-world/index.html">
+<meta property="og:title" content="C++中的字符串">
+<meta property="og:url" content="http://yoursite.com/2016/09/14/Cpp-string-and-c-str/index.html">
 <meta property="og:site_name" content="Greensky01's Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-01-30T08:04:43.964Z">
+<meta property="og:description" content="字符串有哪些？使用C++时，常见的字符串类型有char[]（字符数组）和标准库中的std::string；如果在VC下开发MFC程序，也会遇到CString这种类型。不同的字符串间的转换是非常麻烦的一件事，即便已经有数不清的前辈为大家总结好了转换的各种方法，但是保持数据类型的一致性，还是能在很大程度上提高开发效率。如果不行，那你一定没有经历过花一下午时间debug，但最后发现问题出在了这种转换上。">
+<meta property="og:updated_time" content="2016-09-14T12:22:03.564Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="C++中的字符串">
+<meta name="twitter:description" content="字符串有哪些？使用C++时，常见的字符串类型有char[]（字符数组）和标准库中的std::string；如果在VC下开发MFC程序，也会遇到CString这种类型。不同的字符串间的转换是非常麻烦的一件事，即便已经有数不清的前辈为大家总结好了转换的各种方法，但是保持数据类型的一致性，还是能在很大程度上提高开发效率。如果不行，那你一定没有经历过花一下午时间debug，但最后发现问题出在了这种转换上。">
   
     <link rel="alternative" href="/atom.xml" title="Greensky01&#39;s Blog" type="application/atom+xml">
   
@@ -69,12 +66,16 @@ Quick">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Cpp-string-and-c-str" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/01/30/hello-world/" class="article-date">
-  <time datetime="2016-01-30T08:04:43.964Z" itemprop="datePublished">2016-01-30</time>
+    <a href="/2016/09/14/Cpp-string-and-c-str/" class="article-date">
+  <time datetime="2016-09-14T11:52:21.000Z" itemprop="datePublished">2016-09-14</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/小细节/">小细节</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -83,7 +84,7 @@ Quick">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      C++中的字符串
     </h1>
   
 
@@ -91,37 +92,28 @@ Quick">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h2 id="u5B57_u7B26_u4E32_u6709_u54EA_u4E9B_uFF1F"><a href="#u5B57_u7B26_u4E32_u6709_u54EA_u4E9B_uFF1F" class="headerlink" title="字符串有哪些？"></a>字符串有哪些？</h2><p>使用C++时，常见的字符串类型有char[]（字符数组）和标准库中的std::string；如果在VC下开发MFC程序，也会遇到CString这种类型。不同的字符串间的转换是非常麻烦的一件事，即便已经有数不清的前辈为大家总结好了转换的各种方法，但是保持数据类型的一致性，还是能在很大程度上提高开发效率。如果不行，那你一定没有经历过花一下午时间debug，但最后发现问题出在了这种转换上。</p>
+<h2 id="u53EF_u662F_u2026"><a href="#u53EF_u662F_u2026" class="headerlink" title="可是…"></a>可是…</h2><p>有许多库函数，在参数传递的时候都是用c风格的char<em>数组的；而另一方面，使用std::string要比char</em>舒服的多。这种情况下，类型转换就没办法避免了。要记住，把string通过c_str()转换为char<em>前，一定记得在string末尾先补上’\0’，否则转换过去的char</em>就会因为没有终止符而导致越界访问。<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">std::string <span class="built_in">str</span> = <span class="string">"Keep this in mind!"</span>;</span><br><span class="line"><span class="built_in">str</span> += <span class="string">'\0'</span>;  <span class="comment">// important</span></span><br><span class="line"><span class="comment">// call socket send() function, which takes char* as argument.</span></span><br><span class="line"><span class="keyword">long</span> SUCCESSFUL = send(my_socket, <span class="built_in">str</span>.c_str(), <span class="built_in">str</span>.<span class="built_in">size</span>(), NULL);</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/30/hello-world/" data-id="cit2vnpbr000ckouvjrp35nsc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/14/Cpp-string-and-c-str/" data-id="cit2vnp2s0000kouvpxf30g1i" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cpp/">cpp</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2016/01/31/Hexo-Blog-Config/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Hexo配置过程及文章发表
-        
-      </div>
-    </a>
   
+    <a href="/2016/07/22/tip-for-changing-hostname-and-avoid-hadoop-failure/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">解决因修改hostname导致hadoop不能完全启动的问题</div>
+    </a>
   
 </nav>
 
@@ -131,7 +123,7 @@ Quick">
 
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="post-hello-world" data-title="Hello World" data-url="http://yoursite.com/2016/01/30/hello-world/"></div>
+  <div class="ds-thread" data-thread-key="post-Cpp-string-and-c-str" data-title="C++中的字符串" data-url="http://yoursite.com/2016/09/14/Cpp-string-and-c-str/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
   <script type="text/javascript">
