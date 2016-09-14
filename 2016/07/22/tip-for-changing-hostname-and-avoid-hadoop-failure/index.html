@@ -1,12 +1,150 @@
-extends base.jade
-block content
-    a(href="#{config.root}").read-more Read the entire novel
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Greensky01&#39;s Blog › 解决因修改hostname导致hadoop不能完全启动的问题</title>
+  <meta name="author" content="Wei William Lyu">
+  
+  <meta name="description" content="this is a desc">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    article.article.clear
-        header.header
-          h1= page.title
-        != page.content
+  <meta property="og:title" content="解决因修改hostname导致hadoop不能完全启动的问题"/>
+  <meta property="og:site_name" content="Greensky01&#39;s Blog"/>
 
-    a(href="#{config.root}").read-more Read the entire novel
+  
+    <meta property="og:image" content="undefined"/>
+  
 
-    != partial("_partials/author.jade")
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Greensky01&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5353535-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">Greensky01&#39;s Blog</a></h1>
+  <h2 id="header-h2">This is subtitle</h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/archives">文章归档</a></li>
+      
+      <li><a href="/links">友情链接</a></li>
+      
+      <li><a href="http://fanfou.com/sanqiuhaoyue">饭否</a></li>
+      
+      <li><a href="/about">关于</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title">解决因修改hostname导致hadoop不能完全启动的问题</h1>
+  
+
+      
+      <time datetime="2016-07-22T03:33:37.000Z">2016-07-22</time>
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="u95EE_u9898_u80CC_u666F"><a href="#u95EE_u9898_u80CC_u666F" class="headerlink" title="问题背景"></a>问题背景</h2><p>在虚拟机中安装ubuntu 16.04，默认主机名hostname=username-virtual-machine。即便你取的用户名不是很长，在终端里看到的username@hostname也长得足以让你崩溃了。一方面想把这个名字改短，另一方面是因为想搭一个hadoop的集群玩一玩，所以决定把这台虚拟机的hostname改为master。这里采用永久修改主机名的方式，方法是修改/etc/hostname文件：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit <span class="regexp">/etc/</span>hostname</span><br></pre></td></tr></table></figure></p>
+<p>我的修改结果为：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># greensky010-virtual-machine</span></span><br><span class="line"><span class="literal">master</span></span><br></pre></td></tr></table></figure></p>
+<p>重启系统，在终端中可以看到主机名已经变成了master，so good！</p>
+<p>但是在启动hadoop时出现问题了，用jps查看进程，会发现datanode和secondarynamenode都没能启动，其后的信息显示<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">main <span class="class"><span class="keyword">class</span> <span class="title">information</span> <span class="title">unavailable</span></span></span><br></pre></td></tr></table></figure></p>
+<p>另一方面，在终端执行各种sudo命令时，会提示<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu unable <span class="built_in">to</span> <span class="built_in">resolve</span> host master</span><br></pre></td></tr></table></figure></p>
+<h2 id="u89E3_u51B3_u529E_u6CD5"><a href="#u89E3_u51B3_u529E_u6CD5" class="headerlink" title="解决办法"></a>解决办法</h2><p>其实在看到ubuntu unable to resolve host master这个提示的时候，就应该能够想到解决方案了。这里产生问题的原因是，虽然修改了hostname，但是没有对应的修改/etc/hosts文件，其中的127.0.1.1仍然对应着原来的hostname，因此出现了上述问题。</p>
+<p>打开/etc/hosts文件，并作如下修改（我选择追加的方式，也可以直接把原来的hostname删掉）<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.1</span><span class="number">.1</span>   greensky010-<span class="keyword">virtual</span>-machine  master</span><br></pre></td></tr></table></figure></p>
+<p>保存，关闭，重启系统，问题解决。So excited!</p>
+
+      
+    </div>
+    
+    <footer>
+      <div class="alignleft">
+      
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>
+  </div>
+
+      
+  
+  <div class="tags">
+    <a href="/tags/Hadoop/">Hadoop</a>, <a href="/tags/Linux/">Linux</a>
+  </div>
+
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+<section id="comment">
+  
+            <!-- Duoshuo Comment BEGIN -->
+            <div class="ds-thread"></div>
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"null"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = 'http://static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- Duoshuo Comment END -->
+      
+  
+</section>
+
+</div></div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer"><div class="inner"><div class="alignleft">
+  <p>
+  
+    &copy; 2016 Wei William Lyu
+  
+  </p>
+  <p>
+    <a href="https://github.com/imbyron/hexo-theme-daisy" >Theme</a> By <a href="http://googleyixia.com" >Byron</a> based on <a href="https://github.com/willerce/hexo-theme-noderce" >Noderce</a>.
+  </p>
+
+</div>
+<div class="clearfix"></div></div></footer>
+  <script type="text/javascript">
+
+</script>
+
+</body>
+</html>

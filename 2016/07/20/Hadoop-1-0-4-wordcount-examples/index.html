@@ -1,12 +1,174 @@
-extends base.jade
-block content
-    a(href="#{config.root}").read-more Read the entire novel
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Greensky01&#39;s Blog › 运行Hadoop-1.0.4 wordcount</title>
+  <meta name="author" content="Wei William Lyu">
+  
+  <meta name="description" content="this is a desc">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    article.article.clear
-        header.header
-          h1= page.title
-        != page.content
+  <meta property="og:title" content="运行Hadoop-1.0.4 wordcount"/>
+  <meta property="og:site_name" content="Greensky01&#39;s Blog"/>
 
-    a(href="#{config.root}").read-more Read the entire novel
+  
+    <meta property="og:image" content="undefined"/>
+  
 
-    != partial("_partials/author.jade")
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Greensky01&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5353535-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">Greensky01&#39;s Blog</a></h1>
+  <h2 id="header-h2">This is subtitle</h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/archives">文章归档</a></li>
+      
+      <li><a href="/links">友情链接</a></li>
+      
+      <li><a href="http://fanfou.com/sanqiuhaoyue">饭否</a></li>
+      
+      <li><a href="/about">关于</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title">运行Hadoop-1.0.4 wordcount</h1>
+  
+
+      
+      <time datetime="2016-07-20T15:12:07.000Z">2016-07-20</time>
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h2><p>安装好hadoop之后还没有真正运行过程序。今天买了一本《Hadoop In Action》的电子版，看到Hadoop自带了一些例子，尤其是著名的wordcount，于是就决定来试一下。但是第一次按照第一章的代码运行并没有成功，看到后面才发现这是因为第一章的例子是在standalone模式下运行的，而我已经配置了pseudo-distributed模式。好在最后求助于搜索引擎，把问题解决了。在这里把自己的操作过程记录一下。注意，我使用的配置是ubuntu 16.04，Hadoop 1.0.4。</p>
+<h2 id="u6B65_u9AA4"><a href="#u6B65_u9AA4" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li><p>在hadoop根目录下创建input目录用于保存本地文件;创建output目录用于稍后接收输出文件。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mkdir</span> <span class="keyword">input</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建三个文本文件，写入一些文本，内容随意啦。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">vim</span> file1</span><br><span class="line"><span class="keyword">vim</span> file2</span><br><span class="line"><span class="keyword">vim</span> file3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建HDFS下的文件目录，用于存放上述输入文本。</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/hadoop <span class="built_in">fs</span> -<span class="built_in">mkdir</span> test-examples</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>该目录会被存放在HDFS下的 /user/greensky01-0/test-examples</p>
+<ol>
+<li><p>将file1、file2、file3文件上传至HDFS。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin<span class="regexp">/hadoop fs -put ./i</span>nput<span class="regexp">/file1 /u</span>ser<span class="regexp">/greensky01-0/</span>test-examples</span><br><span class="line">bin<span class="regexp">/hadoop fs -put ./i</span>nput<span class="regexp">/file2 /u</span>ser<span class="regexp">/greensky01-0/</span>test-examples</span><br><span class="line">bin<span class="regexp">/hadoop fs -put ./i</span>nput<span class="regexp">/file3 /u</span>ser<span class="regexp">/greensky01-0/</span>test-examples</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这时准备工作都已经做好，可以运行例子了。</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/hadoop jar hadoop-examples-<span class="number">1</span>.<span class="number">0</span>.<span class="number">4</span>.jar wordcount /user/greensky01-<span class="number">0</span>/test-examples /user/greensky01-<span class="number">0</span>/test-examples/wordcount-<span class="literal">result</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上述命令倒数第二个参数表示将对test-examples下所有文本文件进行统计，倒数第一个参数表示将结果放在这个指定的目录下，注意，这里的wordcount-result是一个目录</p>
+<ol>
+<li><p>上述任务执行完毕后，可以在wordcount-result目录下看到三个文件，_SUCCESS，_logs，part-r-00000。统计的结果存放在part-r-00000中。</p>
+</li>
+<li><p>在HDFS系统中查看结果。</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/hadoop fs -cat /user/greensky01-<span class="number">0</span>/test-examples/wordcount-<span class="literal">result</span>/part-r-<span class="number">00000</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如何需要将结果保存至本地文件系统，可以使用下面的命令：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/hadoop fs -copyToLocal /user/greensky01-<span class="number">0</span>/test-examples/wordcount-<span class="literal">result</span> ./output/</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <footer>
+      <div class="alignleft">
+      
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>
+  </div>
+
+      
+  
+  <div class="tags">
+    <a href="/tags/Hadoop/">Hadoop</a>
+  </div>
+
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+<section id="comment">
+  
+            <!-- Duoshuo Comment BEGIN -->
+            <div class="ds-thread"></div>
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"null"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = 'http://static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- Duoshuo Comment END -->
+      
+  
+</section>
+
+</div></div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer"><div class="inner"><div class="alignleft">
+  <p>
+  
+    &copy; 2016 Wei William Lyu
+  
+  </p>
+  <p>
+    <a href="https://github.com/imbyron/hexo-theme-daisy" >Theme</a> By <a href="http://googleyixia.com" >Byron</a> based on <a href="https://github.com/willerce/hexo-theme-noderce" >Noderce</a>.
+  </p>
+
+</div>
+<div class="clearfix"></div></div></footer>
+  <script type="text/javascript">
+
+</script>
+
+</body>
+</html>
